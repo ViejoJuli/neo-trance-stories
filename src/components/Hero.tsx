@@ -22,7 +22,7 @@ const Hero = () => {
           Neo Trance Cafetero
         </p>
         <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black leading-none mb-6 animate-fade-in-up">
-          Más que un{" "}
+          Más que solo un{" "}
           <span className="text-gradient-neon">DJ</span>
         </h1>
         <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-in-up-delay-1">
