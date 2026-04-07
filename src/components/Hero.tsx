@@ -34,7 +34,7 @@ const Hero = () => {
             Únete a la comunidad — es gratis
           </Button>
           <Button variant="heroOutline" size="lg" className="text-lg px-8 py-6">
-            Escucha mis sets
+            Escucha uno de mis sets
           </Button>
         </div>
 
