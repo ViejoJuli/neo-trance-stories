@@ -1,7 +1,25 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import heroBg from "@/assets/hero-bg.jpg";
+import SoundCloudEmbed from "@/components/SoundCloudEmbed";
 
 const Hero = () => {
+  const { data: featuredSet } = useQuery({
+    queryKey: ["featured_set"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("sets")
+        .select("*")
+        .eq("destacado", true)
+        .limit(1)
+        .maybeSingle();
+      if (error) throw error;
+      return data;
+    },
+  });
+
   return (
     <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background image */}
@@ -30,17 +48,25 @@ const Hero = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up-delay-2">
-          <Button variant="hero" size="lg" className="text-lg px-8 py-6">
-            Únete a la comunidad — es gratis
+          <Button variant="hero" size="lg" className="text-lg px-8 py-6" asChild>
+            <Link to="/auth">Únete a la comunidad — es gratis</Link>
           </Button>
-          <Button variant="heroOutline" size="lg" className="text-lg px-8 py-6">
-            Escucha uno de mis sets
+          <Button variant="heroOutline" size="lg" className="text-lg px-8 py-6" asChild>
+            <Link to="/musica">Escucha mis sets</Link>
           </Button>
         </div>
 
         <p className="text-xs text-muted-foreground mt-6 animate-fade-in-up-delay-3">
           Regístrate y recibe contenido exclusivo cada semana sobre Neo Trance Cafetero
         </p>
+
+        {/* Featured set autoplay */}
+        {featuredSet && (
+          <div className="max-w-xl mx-auto mt-12 animate-fade-in-up-delay-3">
+            <p className="text-xs text-primary font-semibold uppercase tracking-wider mb-3">Escuchando ahora</p>
+            <SoundCloudEmbed url={featuredSet.url_soundcloud} autoPlay={true} />
+          </div>
+        )}
       </div>
 
       {/* Bottom gradient fade */}
