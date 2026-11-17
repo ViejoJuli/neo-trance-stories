@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider, ProtectedRoute } from "@/lib/auth";
+import "@/styles/cyberpunk.css";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import ResetPassword from "./pages/ResetPassword";
@@ -14,6 +15,7 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Dashboard from "./pages/Dashboard";
 import Perfil from "./pages/Perfil";
+import InteractivePortfolio from "./pages/InteractivePortfolio";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +29,7 @@ const App = () => (
         <AuthProvider>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/portfolio" element={<InteractivePortfolio />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/tienda" element={<Tienda />} />

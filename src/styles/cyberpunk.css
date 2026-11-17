@@ -1,0 +1,113 @@
+/* Estilos brutalistas y cyberpunk */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00ff41;
+  border: 1px solid #00ff41;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #dfff00;
+}
+
+/* Terminal input styling */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: #0d0d0d;
+  outline: none;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: #00ff41;
+  cursor: pointer;
+  border: 1px solid #00ff41;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+}
+
+input[type='range']::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: #00ff41;
+  cursor: pointer;
+  border: 1px solid #00ff41;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+  border-radius: 2px;
+}
+
+/* Text selection */
+::selection {
+  background: #00ff41;
+  color: #1a1a1a;
+}
+
+::-moz-selection {
+  background: #00ff41;
+  color: #1a1a1a;
+}
+
+/* Smooth animations */
+@keyframes neon-glow {
+  0% {
+    text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41;
+  }
+  50% {
+    text-shadow: 0 0 20px #00ff41, 0 0 30px #dfff00;
+  }
+  100% {
+    text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.neon-glow {
+  animation: neon-glow 3s infinite;
+}
+
+.glitch {
+  animation: glitch 0.3s infinite;
+}
+
+/* Cursor styling */
+* {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="%2300FF41" d="M2 2l10 20h2l1-7 7-1v-2l-20-10z"/></svg>') 4 12,
+    auto;
+}
+
+button {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="%23DFFF00" d="M2 2l10 20h2l1-7 7-1v-2l-20-10z"/></svg>') 4 12,
+    pointer;
+}
