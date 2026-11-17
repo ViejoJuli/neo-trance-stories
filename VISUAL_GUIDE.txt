@@ -1,0 +1,198 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                     COMPARATIVA: ANTES vs AHORA                           ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ ANTES (Estático)                   │ AHORA (Con Animaciones)              │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                     │                                      │
+│ 🖥️ Pantalla negra fija              │ 🎬 Cascadas de números cayendo       │
+│ 📄 Texto estático                   │ 🌈 Cambios de color dinámicos        │
+│ 🖱️ Cursor genérico                 │ ✨ Cursor neon personalizado         │
+│ 🔇 Sin música                       │ 🎵 SoundCloud integrado              │
+│                                     │                                      │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ EFECTO MATRIX EN TIEMPO REAL                                               │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  FRAME 1:                      FRAME 2:                  FRAME 3:          │
+│  ┌─────────────────┐           ┌─────────────────┐       ┌───────────────┐ │
+│  │                 │           │                 │       │               │ │
+│  │ ｦｧｨｩｪｫ         │           │  ｦｧｨｩｪｫ        │       │   ｦｧｨｩｪｫ      │ │
+│  │  0101010         │           │   0101010       │       │    0101010    │ │
+│  │   ｬｭｮｯﾀ         │           │    ｬｭｮｯﾀ        │       │     ｬｭｮｯﾀ    │ │
+│  │    1111000       │           │     1111000     │       │      1111000  │ │
+│  │                 │           │                 │       │               │ │
+│  │  [VERDE]        │           │  [AMARILLO]     │       │  [MAGENTA]    │ │
+│  │  [LENTO]        │           │  [MEDIO]        │       │  [RÁPIDO]     │ │
+│  │                 │           │                 │       │               │ │
+│  └─────────────────┘           └─────────────────┘       └───────────────┘ │
+│                                                                             │
+│  → Bajos bajos      → Bajos medios      → Bajos intensos (KICK)            │
+│    Velocidad 0.5x     Velocidad 1x       Velocidad 2x                      │
+│    Opacidad 50%       Opacidad 80%       Opacidad 100%                     │
+│                                                                             │
+│  CASCADAS DE NÚMEROS (Nuevas):                                            │
+│  ┌─────────────────────────────────────┐                                  │
+│  │  3                                  │  ← Número aleatorio               │
+│  │  7                                  │  ← Desaparece (fade out)         │
+│  │  2                                  │  ← Siguiente número              │
+│  │  9                                  │  ← Siguiente número              │
+│  │  1                                  │  ← Glitch aleatorio (↔ color)   │
+│  │  4                                  │  ← Normal                        │
+│  │  8                                  │  ← Siguiente número              │
+│  │  6                                  │  ← Siguiente número              │
+│  │                                     │                                  │
+│  │  [VERDE]                           │                                  │
+│  │  [FADING OUT GRADUALMENTE]         │                                  │
+│  │  [NUEVO CADA 15 NÚMEROS]           │                                  │
+│  │                                     │                                  │
+│  └─────────────────────────────────────┘                                  │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ CURSOR MEJORADO - 3 Versiones                                              │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  CURSOR DEFAULT (Elemento normal):                                        │
+│  ┌─────────────                                                            │
+│  │ ╱  ← Punta en (2,2)   Color: Verde Neon (#00FF41)                     │
+│  │ │  Punto luminoso amarillo (#DFFF00)                                  │
+│  │ │                                                                     │
+│  │                                                                       │
+│  CURSOR BUTTON (Al pasar sobre botones):                                │
+│  ┌────────                                                               │
+│  │ ╱    ← Punta más grande    Color: Amarillo (#DFFF00)                 │
+│  │ ⊗    Círculo para click                                              │
+│  │                                                                       │
+│  CURSOR INPUT (En campos de texto):                                     │
+│  ┌────────                                                               │
+│  │ │                       Color: Cyan (#00FFFF)                        │
+│  │ │                       Cruz de edición                              │
+│  │ ───                                                                   │
+│                                                                             │
+│  VENTAJA: Punta exactamente en la esquina superior izquierda del SVG      │
+│           Offset (2,2) en lugar de (4,12) del anterior                   │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ SOUNDCLOUD INTEGRATION - Widget Incrustado                                 │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  VENTANA DE REPRODUCTOR:                                                  │
+│  ┌────────────────────────────────────────────┐                           │
+│  │ [ Player ] [ SoundCloud ⭐ ACTIVO ]       │                           │
+│  ├────────────────────────────────────────────┤                           │
+│  │                                            │                           │
+│  │  🎵 SoundCloud Tracks de elminusuan       │                           │
+│  │                                            │                           │
+│  │  ╔════════════════════════════════════╗   │                           │
+│  │  ║  SoundCloud Player Widget          ║   │                           │
+│  │  ║                                    ║   │                           │
+│  │  ║  El 3ero - Neo Trance Cafetero     ║   │                           │
+│  │  ║  [▶︎ PLAY] [━━━━━━] [0:45 / 5:00] ║   │                           │
+│  │  ║                                    ║   │                           │
+│  │  ║  Otros tracks:                     ║   │                           │
+│  │  ║  • Neo Trance Dimension            ║   │                           │
+│  │  ║  • Cyberpunk Sunrise               ║   │                           │
+│  │  ║  • Digital Nomad                   ║   │                           │
+│  │  ║                                    ║   │                           │
+│  │  ║  🔗 Follow on SoundCloud           ║   │                           │
+│  │  ╚════════════════════════════════════╝   │                           │
+│  │                                            │                           │
+│  │  Border: 1px #00FF41                      │                           │
+│  │  Shadow: 0 0 10px rgba(0,255,65,0.3)     │                           │
+│  │  Background: #1A1A1A                      │                           │
+│  │                                            │                           │
+│  └────────────────────────────────────────────┘                           │
+│                                                                             │
+│  CARACTERÍSTICAS:                                                          │
+│  ✅ Acceso directo a tu perfil SoundCloud                                  │
+│  ✅ Reproduce "El 3ero - Neo Trance Cafetero" natively                     │
+│  ✅ Ver todos tus tracks y estadísticas                                    │
+│  ✅ Mantiene estilo neon del portafolio                                    │
+│  ✅ Tab alternado: Player Local ↔ SoundCloud                              │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ REACCIÓN AL AUDIO (Sincronización)                                         │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  SIN MÚSICA:                           CON MÚSICA (BAJOS):                │
+│  ┌──────────────────┐                 ┌──────────────────┐                │
+│  │  Fondo negro     │                 │  Fondo brillante │                │
+│  │  Caracteres lent │                 │  Caracteres rápid│                │
+│  │  Opacidad 50%    │                 │  Opacidad 100%   │                │
+│  │  Velocidad 0.5x  │                 │  Velocidad 2x    │                │
+│  │  Color: Verde    │                 │  Color: Amarillo │                │
+│  │                  │                 │  Glitch: Magenta │                │
+│  │  Scanlines débil │                 │  Scanlines fuerte│                │
+│  └──────────────────┘                 └──────────────────┘                │
+│                                                                             │
+│  bassFrequency = 0                    bassFrequency = 200+                │
+│  (Silencio)                           (KICK fuerte en bajos)              │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ VISUALIZACIÓN EN VIVO                                                       │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  PANTALLA COMPLETA:                                                       │
+│  ╔════════════════════════════════════════════════════════════════════╗   │
+│  ║                                                                    ║   │
+│  ║          0 1 ｦｧ 01 ｨｩ 1 0 1  ← Lluvia constante cayendo          ║   │
+│  ║          1   ｪｫ    ｬｭ   0 1                                      ║   │
+│  ║          0 1 ｮｯ 10 ﾀﾁ 0 1 0  ← Colores alternando (R:50ms)      ║   │
+│  ║                                                                    ║   │
+│  ║      ╔══════════════════════════════╗                             ║   │
+│  ║      ║  [REPRODUCTOR_TRACKS]        ║                             ║   │
+│  ║      ║                              ║                             ║   │
+│  ║      ║  Player │ SoundCloud         ║                             ║   │
+│  ║      ║  ─────────────────────────── ║                             ║   │
+│  ║      ║  🎵 El 3ero - Neo Trance... ║                             ║   │
+│  ║      ║  Waveform visualizer        ║                             ║   │
+│  ║      ║  [◀︎] [▶︎] [⏭︎]            ║                             ║   │
+│  ║      ║  FX: [BASS+][FILTER]...     ║                             ║   │
+│  ║      ╚══════════════════════════════╝                             ║   │
+│  ║                                                                    ║   │
+│  ║          0 ｦｧ 1 0 ｨｩ ｪｫ 0 1  ← Cascadas numéricas                 ║   │
+│  ║          1   ｬｭ   1 0 ｮｯ 1 0                                     ║   │
+│  ║          0 1 ﾀﾁ 01 1 0 ﾂﾃ 0 1  ← EFECTO GLITCH (↔ Magenta)       ║   │
+│  ║                                                                    ║   │
+│  ║                                                                    ║   │
+│  ║  [REPRODUCTOR_TRACKS] [BIO] [SETS] [CONTACTO]  ← Taskbar         ║   │
+│  ║                                                                    ║   │
+│  ╚════════════════════════════════════════════════════════════════════╝   │
+│                                                                             │
+│  🎮 INTERACCIÓN:                                                           │
+│    • Mueve mouse → Cursor neon sigue                                      │
+│    • Haz clic en botón → Cursor amarillo, ventana abre                   │
+│    • Arrastra ventana → Se mueve y Matrix sigue detrás                   │
+│    • Presiona Play → Matrix acelera, números caen más rápido             │
+│    • Presiona BASS+ → Efecto inmediato de glitch                         │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════════════════════
+
+                    🚀 PRÓXIMO PASO: INICIAR EL SERVER
+
+                        $ npm run dev
+                        
+                   Luego accede a:
+                   http://localhost:5173/portfolio
+                   
+                   ¡Verás todo en acción! 🎵✨
+                   
+═══════════════════════════════════════════════════════════════════════════════
