@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { MatrixBackground } from '@/components/audio-reactive/MatrixBackground';
 import { WindowManager } from '@/components/window-system/WindowManager';
 import { TrackPlayer } from '@/components/player/TrackPlayer';
@@ -49,16 +49,16 @@ const ContactContent: React.FC = () => (
     <div className="text-[#DFFF00] mb-3">[ CONTACTO ]</div>
     <div className="space-y-2">
       <div>
-        <span className="text-[#DFFF00]">&gt;</span> Email: contact@yourname.music
+        <span className="text-[#DFFF00]">&gt;</span> Email: contact@elminusuan.music
       </div>
       <div>
-        <span className="text-[#DFFF00]">&gt;</span> Instagram: @yourname.dj
+        <span className="text-[#DFFF00]">&gt;</span> Instagram: @elminusuan
       </div>
       <div>
-        <span className="text-[#DFFF00]">&gt;</span> Soundcloud: /yourname
+        <span className="text-[#DFFF00]">&gt;</span> Soundcloud: elminusuan
       </div>
       <div>
-        <span className="text-[#DFFF00]">&gt;</span> Bandcamp: yourname.bandcamp.com
+        <span className="text-[#DFFF00]">&gt;</span> Bandcamp: elminusuan.bandcamp.com
       </div>
     </div>
   </div>
@@ -67,9 +67,23 @@ const ContactContent: React.FC = () => (
 const InteractivePortfolio: React.FC = () => {
   const audioContext = useAudioContext();
   const windowManager = useWindowManager();
+  const [bassFrequency, setBassFrequency] = useState(0);
+  const rafRef = useRef<number | null>(null);
 
-  const bassFrequency = useMemo(() => {
-    return audioContext.getBassFrequency();
+  // Actualizar frecuencia de bajos constantemente para animaciones
+  useEffect(() => {
+    const updateFrequency = () => {
+      setBassFrequency(audioContext.getBassFrequency());
+      rafRef.current = requestAnimationFrame(updateFrequency);
+    };
+
+    rafRef.current = requestAnimationFrame(updateFrequency);
+
+    return () => {
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
   }, [audioContext]);
 
   const renderWindowContent = (window: WindowState): React.ReactNode => {

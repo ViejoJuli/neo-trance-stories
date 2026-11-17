@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react';
-import { Play, Pause, SkipBack, SkipForward, Volume2 } from 'lucide-react';
+import { Play, Pause, SkipBack, SkipForward, Volume2, Music } from 'lucide-react';
 import { WaveformVisualizer } from '@/components/audio-reactive/WaveformVisualizer';
 import { FxPad } from './FxPad';
+import { SoundCloudWidget } from './SoundCloudPlayer';
 
 interface TrackPlayerProps {
   analyser: AnalyserNode | null;
@@ -18,19 +19,19 @@ interface Track {
 const DEMO_TRACKS: Track[] = [
   {
     id: '1',
-    title: 'Neo Trance Dimension',
-    artist: 'Your Name',
-    url: '', // Agregar URL de track de prueba
+    title: 'El 3ero - Neo Trance Cafetero',
+    artist: 'elminusuan',
+    url: 'https://soundcloud.com/elminusuan/el-3ero-neo-trance-cafetero',
   },
   {
     id: '2',
-    title: 'Cyberpunk Sunrise',
+    title: 'Neo Trance Dimension',
     artist: 'Your Name',
-    url: '',
+    url: '', // Agregar URL de track
   },
   {
     id: '3',
-    title: 'Digital Nomad',
+    title: 'Cyberpunk Sunrise',
     artist: 'Your Name',
     url: '',
   },
@@ -40,6 +41,7 @@ export const TrackPlayer: React.FC<TrackPlayerProps> = ({ analyser, audioContext
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [volume, setVolume] = useState(0.5);
+  const [viewMode, setViewMode] = useState<'player' | 'soundcloud'>('soundcloud');
   const audioRef = useRef<HTMLAudioElement>(null);
   const sourceRef = useRef<MediaElementAudioSourceNode | null>(null);
 
@@ -78,8 +80,48 @@ export const TrackPlayer: React.FC<TrackPlayerProps> = ({ analyser, audioContext
     setIsPlaying(false);
   };
 
+  // Modo SoundCloud
+  if (viewMode === 'soundcloud') {
+    return (
+      <div className="p-4 h-full flex flex-col gap-4 bg-[#1A1A1A] text-[#00FF41] font-mono">
+        <div className="flex gap-2">
+          <button
+            onClick={() => setViewMode('player')}
+            className="px-3 py-1 border border-[#00FF41] text-xs hover:bg-[#00FF41] hover:text-[#1A1A1A] transition-all"
+          >
+            Player
+          </button>
+          <button
+            onClick={() => setViewMode('soundcloud')}
+            className="px-3 py-1 border border-[#DFFF00] bg-[#DFFF00] text-[#1A1A1A] text-xs"
+          >
+            SoundCloud
+          </button>
+        </div>
+
+        <SoundCloudWidget username="elminusuan" />
+      </div>
+    );
+  }
+
+  // Modo reproductor local
   return (
     <div className="p-4 h-full flex flex-col gap-4 bg-[#1A1A1A] text-[#00FF41] font-mono">
+      <div className="flex gap-2">
+        <button
+          onClick={() => setViewMode('player')}
+          className="px-3 py-1 border border-[#DFFF00] bg-[#DFFF00] text-[#1A1A1A] text-xs"
+        >
+          Player
+        </button>
+        <button
+          onClick={() => setViewMode('soundcloud')}
+          className="px-3 py-1 border border-[#00FF41] text-xs hover:bg-[#00FF41] hover:text-[#1A1A1A] transition-all"
+        >
+          SoundCloud
+        </button>
+      </div>
+
       {/* Track Info */}
       <div className="border border-[#00FF41] p-3 bg-[#0D0D0D]">
         <div className="text-xs tracking-widest uppercase mb-1">» Playing Now</div>
@@ -161,6 +203,7 @@ export const TrackPlayer: React.FC<TrackPlayerProps> = ({ analyser, audioContext
               setIsPlaying(false);
             }}
           >
+            <Music size={10} className="inline mr-1" />
             {idx + 1}. {track.title}
           </div>
         ))}
