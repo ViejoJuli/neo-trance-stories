@@ -1,229 +1,89 @@
-╔════════════════════════════════════════════════════════════════════════════╗
-║                                                                            ║
-║              🎵 MEJORAS IMPLEMENTADAS - 17 NOV 2026 🎵                     ║
-║                                                                            ║
-║          Animaciones Matrix • Cursor Mejorado • SoundCloud                  ║
-║                                                                            ║
-╚════════════════════════════════════════════════════════════════════════════╝
+NEO TRANCE STORIES — ESTADO DE MEJORAS
+Actualización: 23 de noviembre de 2026
 
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ ✅ PROBLEMA 1: Página Estática (Animaciones No Visibles)                   │
-└─────────────────────────────────────────────────────────────────────────────┘
+Este documento resume el estado y las mejoras prioritarias. La visión y los
+requisitos están en PRD.md; la secuencia propuesta está en ROADMAP.md.
+La versión anterior describía el prototipo del escritorio interactivo y algunas
+funciones como terminadas sin verificarlas. Se conserva en el historial de Git,
+pero no representa la experiencia actual.
 
-PROBLEMA:
-  ❌ Canvas Matrix no se actualizaba en tiempo real
-  ❌ Cascadas de números no caían
-  ❌ Frecuencias de audio no sincronizaban
+1. EXPERIENCIA INTEGRADA
 
-SOLUCIÓN IMPLEMENTADA:
-  ✅ Cambiar de useMemo a useState + RAF loop
-  ✅ Usar requestAnimationFrame para actualizar frecuencias constantemente
-  ✅ Cascadas de números cayendo verticalmente
-  ✅ Efecto de glitch aleatorio (colores magenta/cyan)
-  ✅ Scanlines CRT (líneas horizontales oscuras)
-  ✅ Efectos sincronizados con bajos/kicks
+IMPLEMENTADO
+- El inicio reúne la entrada Matrix, la historia, la música, TikTok, fotografía
+  y contacto. /portfolio redirige al inicio.
+- La cascada numérica se anima sin depender de la música; la introducción respeta
+  la preferencia del sistema para reducir movimiento.
+- La imagen «El Loco» aparece en Sobre mí. El símbolo del artista se usa como
+  marca y favicon.
+- El presskit está disponible para descargar desde contacto.
+- Los planes de servicios y sus precios ya no aparecen en la portada.
 
-CÓDIGO:
-  Línea 108-124 en InteractivePortfolio.tsx:
-  ```typescript
-  const [bassFrequency, setBassFrequency] = useState(0);
-  
-  useEffect(() => {
-    const updateFrequency = () => {
-      setBassFrequency(audioContext.getBassFrequency());
-      rafRef.current = requestAnimationFrame(updateFrequency);
-    };
-    rafRef.current = requestAnimationFrame(updateFrequency);
-    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
-  }, [audioContext]);
-  ```
+PENDIENTE
+- Revisar textos, testimonios y contenido de ejemplo para que sean auténticos.
+- Validar navegación, accesibilidad, rendimiento y comportamiento en móvil.
+- Revisar las promesas de comunidad y contenido para que correspondan a lo
+  realmente disponible.
 
-RESULTADO VISUAL:
-  🎬 Lluvia de números descendiendo
-  🌈 Cambios de color en tiempo real
-  ⚡ Efecto glitch dramático
-  📡 Scanlines como monitor antiguo
-  🔊 Reacciona a bajos/kicks
+2. MÚSICA Y SOUNDCLOUD
 
+IMPLEMENTADO
+- La radio usa el reproductor oficial de SoundCloud y permanece montada al
+  navegar dentro de la aplicación. Puede abrirse u ocultarse.
+- Los sets de la página de música se seleccionan en la misma radio.
+- Se consulta el set destacado de Supabase; si no está disponible se usa
+  «El 3ero - Neo Trance Cafetero».
 
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ ✅ PROBLEMA 2: Cursor Mal Diseñado                                         │
-└─────────────────────────────────────────────────────────────────────────────┘
+LIMITACIONES
+- El navegador puede bloquear la reproducción automática con sonido.
+- Una recarga o salida del sitio, incluida la redirección externa a Google,
+  interrumpe la reproducción.
+- La animación Matrix del inicio no está sincronizada con las frecuencias del
+  audio del iframe. No se debe presentar como audio-reactiva.
+- El antiguo reproductor con FX y ventanas es un prototipo, no la experiencia
+  principal ni una funcionalidad validada de la radio actual.
 
-PROBLEMA:
-  ❌ Punta del cursor no estaba en la esquina superior izquierda
-  ❌ Offset incorrecto (4,12 en lugar de 2,2)
-  ❌ Cursor genérico sin personalización
+PENDIENTE
+- Verificar la escucha y los controles en navegadores y dispositivos reales.
+- Explorar eventos del widget para controles o medición fiable, sin asumir que
+  ofrecen acceso a las frecuencias del audio.
 
-SOLUCIÓN IMPLEMENTADA:
-  ✅ Rediseñar cursor con SVG personalizado
-  ✅ Punta neon en posición exacta (2,2)
-  ✅ Diferentes cursores por contexto:
-     - Default (verde): Puntero normal
-     - Button (amarillo): Mano para clicks
-     - Input (cyan): Cruz de texto
-  ✅ Punto luminoso en la punta
+3. CONTENIDO Y COMUNIDAD
 
-CÓDIGO (src/styles/cyberpunk.css):
-  ```css
-  * {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" 
-    width="24" height="24" viewBox="0 0 24 24">
-    <path fill="%2300FF41" d="M2 2l16 20-6-9-9-11z"/>
-    <circle cx="4" cy="4" r="1" fill="%23DFFF00"/>
-    </svg>') 2 2, auto;
-  }
-  
-  button {
-    cursor: url('data:image/svg+xml;utf8,...yellow version...') 2 2, pointer;
-  }
-  ```
+IMPLEMENTADO
+- La sección Reflexiones permite cargar voluntariamente el perfil oficial de
+  TikTok y ofrece un enlace directo. TikTok decide qué videos recientes mostrar.
+- El muro «Fragmentos de la ciudad» tiene un estado vacío y admite fotografías
+  configuradas en el código.
+- Existen páginas de blog y música, además de bases de registro, perfil y favoritos.
 
-RESULTADO VISUAL:
-  🖱️ Cursor neon verde con punta brillante
-  🎯 Punta exactamente en la esquina superior izquierda
-  🌟 Punto amarillo luminoso en la punta
-  ✨ Cursor amarillo para botones
-  🔄 Cursor cyan para inputs
+PENDIENTE
+- Seleccionar videos específicos y compartir fotografías, títulos, historias y
+  permisos de uso.
+- Crear un panel de publicación y evolucionar el muro hacia una constelación de
+  fotografías, música y reflexiones, sujeto a validación.
+- Diseñar un primer espacio comunitario moderado: normas, reportes, privacidad
+  y responsables antes de abrir respuestas al público.
+- Preparar la página del próximo disco solo cuando se aprueben su publicación
+  y sus datos.
 
+4. OPERACIÓN Y VALIDACIÓN
 
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ ✅ PROBLEMA 3: Integración SoundCloud                                      │
-└─────────────────────────────────────────────────────────────────────────────┘
+- Supabase respondió en pruebas locales anteriores para consultas públicas y
+  salud de autenticación; esto no confirma registro o inicio de sesión reales.
+- Configurar y probar Google y los demás flujos de cuenta en el entorno público.
+- Desplegar con dominio propio, conexión segura y configuración de redirecciones.
+- Definir una línea base de escucha, lectura y participación con consentimiento,
+  antes de establecer objetivos numéricos.
 
-PROBLEMA:
-  ❌ No había forma de reproducir tracks de SoundCloud
-  ❌ Player estaba desconectado de tu perfil real
-  ❌ No mostraba tu música actual
+5. ORDEN PROPUESTO
 
-SOLUCIÓN IMPLEMENTADA:
-  ✅ Crear componente SoundCloudWidget
-  ✅ Iframe embed directo desde SoundCloud
-  ✅ Toggle entre Player Local y SoundCloud
-  ✅ Cargar tu usuario: elminusuan
-  ✅ Mostrar todos tus tracks de forma nativa
+Fase 1: base confiable, autenticación, contenido real y despliegue.
+Fase 2: fotografía urbana, historias, reflexiones y próximo disco.
+Fase 3: primera conversación comunitaria con moderación.
+Fase 4: favoritos ampliados, recorridos, correo consentido e inglés.
+Fase 5: transiciones, experiencias por lanzamiento, PWA e IA interna,
+        únicamente después de validar utilidad.
 
-NUEVO COMPONENTE: SoundCloudPlayer.tsx
-  ```typescript
-  export const SoundCloudWidget: React.FC<{ username: string }> = ({ username }) => {
-    return (
-      <iframe
-        src={`https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users...`}
-        style={{ border: '1px solid #00FF41' }}
-      />
-    );
-  };
-  ```
-
-ACTUALIZACIÓN TrackPlayer.tsx:
-  ✅ Dos botones: "Player" y "SoundCloud"
-  ✅ Vista alternada entre ambas opciones
-  ✅ Player local sigue funcionando con FX Pad
-  ✅ Widget de SoundCloud incrustado
-
-CARACTERÍSTICAS:
-  🎵 Reproduce tu track "El 3ero - Neo Trance Cafetero"
-  📱 Widget interactivo de SoundCloud
-  🔗 Enlace directo a tu perfil: soundcloud.com/elminusuan
-  💚 Mantiene estilo neon del portafolio
-  ⚡ Carga rápida y nativa
-
-
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ 📊 RESUMEN DE CAMBIOS                                                       │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-ARCHIVOS MODIFICADOS:
-  ✏️  src/pages/InteractivePortfolio.tsx       (+70 líneas - RAF loop)
-  ✏️  src/hooks/useMatrixBackground.ts         (+60 líneas - cascadas)
-  ✏️  src/styles/cyberpunk.css                 (+30 líneas - cursores)
-  ✏️  src/components/player/TrackPlayer.tsx    (+50 líneas - SoundCloud)
-
-ARCHIVOS NUEVOS:
-  ✨ src/components/player/SoundCloudPlayer.tsx (Widget integrado)
-
-COMMIT:
-  Hash: 7cd3e65
-  Files changed: 6
-  Insertions: +552
-  Deletions: -29
-
-
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ 🎮 CÓMO VER LAS MEJORAS                                                     │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-1. Iniciasta el servidor:
-   ```bash
-   npm run dev
-   ```
-
-2. Accede a:
-   ```
-   http://localhost:5173/portfolio
-   ```
-
-3. Verás:
-   ✅ Cascadas de números cayendo en tiempo real
-   ✅ Cursor neon personalizado
-   ✅ Botones Player / SoundCloud en reproductor
-   ✅ Widget de SoundCloud incrustado
-
-4. Prueba:
-   ✅ Haz clic en "REPRODUCTOR_TRACKS"
-   ✅ Mira tab "SoundCloud"
-   ✅ Reproduce "El 3ero - Neo Trance Cafetero"
-   ✅ Observa cómo Matrix reacciona a los bajos
-
-
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ 🎯 CARACTERÍSTICAS FINALES                                                   │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-ANIMACIONES:
-  ✅ Cascadas de números katakana + binarios
-  ✅ Efecto glitch multicolor (cian + magenta)
-  ✅ Scanlines CRT animadas
-  ✅ Sincronización audio ↔ visual
-  ✅ Pulseo de brillo en bajos fuertes
-
-INTERACTIVIDAD:
-  ✅ Ventanas arrastrables
-  ✅ 4 botones FX de audio
-  ✅ Reproductor local + SoundCloud
-  ✅ Cursor personalizado 3-en-1
-
-CONTENIDO:
-  ✅ Tu perfil: elminusuan
-  ✅ Tu track: "El 3ero - Neo Trance Cafetero"
-  ✅ Tu información de contacto
-  ✅ Acceso directo a SoundCloud
-
-
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ 📈 PRÓXIMOS PASOS                                                            │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-INMEDIATO (Hoy):
-  □ Verificar que animaciones se ven correctamente
-  □ Probar cursor en diferentes navegadores
-  □ Verificar que SoundCloud carga sin errores
-
-CORTO PLAZO (Esta semana):
-  □ Agregar más tracks a SoundCloud
-  □ Personalizar colores (cyan/magenta → tus colores)
-  □ Mejorar animaciones adicionales
-
-MEDIANO PLAZO:
-  □ Desplegar a Vercel o Cloudflare
-  □ Comprar dominio personalizado
-  □ Integrar con Resident Advisor
-
-
-╔════════════════════════════════════════════════════════════════════════════╗
-║                                                                            ║
-║                    ✨ ¡MEJORAS COMPLETADAS! ✨                           ║
-║                                                                            ║
-║              Animaciones • Cursor • SoundCloud - 100% Funcional            ║
-║                                                                            ║
-╚════════════════════════════════════════════════════════════════════════════╝
+Las fases y sus estimaciones son propuestas sujetas a validación, no funciones
+existentes ni compromisos de fecha. Ver ROADMAP.md para detalles y dependencias.

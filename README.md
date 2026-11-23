@@ -17,8 +17,8 @@ npm test
 Abre la dirección local indicada por Vite. El proyecto utiliza React, TypeScript,
 Vite, Tailwind CSS y Supabase.
 
-La visión, prioridades y decisiones pendientes del producto se documentan en
-[PRD.md](./PRD.md).
+La visión y los requisitos del producto se documentan en [PRD.md](./PRD.md);
+las prioridades y etapas propuestas, en [ROADMAP.md](./ROADMAP.md).
 
 ## Música y animación
 
