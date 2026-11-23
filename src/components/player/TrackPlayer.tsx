@@ -51,7 +51,7 @@ export const TrackPlayer: React.FC<TrackPlayerProps> = ({ analyser, audioContext
     if (!audioContext || !audioRef.current) return;
 
     if (!sourceRef.current) {
-      sourceRef.current = audioContext.createMediaElementAudioSource(audioRef.current);
+      sourceRef.current = audioContext.createMediaElementSource(audioRef.current);
       sourceRef.current.connect(analyser!);
       analyser!.connect(audioContext.destination);
     }

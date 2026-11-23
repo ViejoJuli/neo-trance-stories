@@ -25,7 +25,7 @@ export const useAudioContext = () => {
 
   const getFrequencyData = (): number[] => {
     if (!analyser || !dataArrayRef.current) return [];
-    analyser.getByteFrequencyData(dataArrayRef.current);
+    analyser.getByteFrequencyData(dataArrayRef.current as Uint8Array<ArrayBuffer>);
     return Array.from(dataArrayRef.current);
   };
 

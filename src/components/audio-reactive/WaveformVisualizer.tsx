@@ -27,7 +27,7 @@ export const WaveformVisualizer: React.FC<WaveformVisualizerProps> = ({
       const ctx = canvas.getContext('2d');
       if (!ctx || !dataArrayRef.current) return;
 
-      analyser.getByteFrequencyData(dataArrayRef.current);
+      analyser.getByteFrequencyData(dataArrayRef.current as Uint8Array<ArrayBuffer>);
 
       ctx.fillStyle = '#1A1A1A';
       ctx.fillRect(0, 0, canvas.width, canvas.height);

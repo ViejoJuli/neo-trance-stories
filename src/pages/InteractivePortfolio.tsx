@@ -125,7 +125,7 @@ const InteractivePortfolio: React.FC = () => {
         onClose={windowManager.closeWindow}
         onMinimize={windowManager.minimizeWindow}
         onFocus={windowManager.focusWindow}
-        onCreateWindow={windowManager.createWindow}
+        onCreateWindow={(type) => { windowManager.createWindow(type, type.toUpperCase()); }}
         renderWindowContent={renderWindowContent}
       />
     </div>
