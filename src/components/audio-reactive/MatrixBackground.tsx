@@ -3,17 +3,21 @@ import { useMatrixBackground } from '@/hooks/useMatrixBackground';
 
 interface MatrixBackgroundProps {
   bassFrequency: number;
+  contained?: boolean;
 }
 
-export const MatrixBackground: React.FC<MatrixBackgroundProps> = ({ bassFrequency }) => {
+export const MatrixBackground: React.FC<MatrixBackgroundProps> = ({ bassFrequency, contained = false }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  useMatrixBackground(canvasRef, bassFrequency);
+  useMatrixBackground(canvasRef, bassFrequency, contained);
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-screen h-screen pointer-events-none"
+      aria-hidden="true"
+      className={contained
+        ? "absolute inset-0 h-full w-full pointer-events-none"
+        : "fixed inset-0 w-screen h-screen pointer-events-none"}
       style={{
         display: 'block',
       }}

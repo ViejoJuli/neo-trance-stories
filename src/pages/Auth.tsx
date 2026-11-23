@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/lib/auth";
 import { useEffect } from "react";
+import BrandMark from "@/components/BrandMark";
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -60,7 +61,7 @@ const Auth = () => {
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <a href="/" className="text-4xl font-black text-gradient-neon">-1</a>
+          <Link to="/" aria-label="-1, ir al inicio" className="inline-flex"><BrandMark className="h-14 w-14" /></Link>
           <p className="text-muted-foreground mt-2">Neo Trance Cafetero</p>
         </div>
 

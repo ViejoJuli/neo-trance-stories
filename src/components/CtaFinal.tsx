@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const CtaFinal = () => {
   return (
@@ -14,8 +15,8 @@ const CtaFinal = () => {
         <p className="text-xl text-muted-foreground max-w-xl mx-auto mb-10">
           Si estás buscando algo real en la escena electrónica, este es el momento de dar el paso.
         </p>
-        <Button variant="neon" size="lg" className="text-lg px-10 py-6 animate-pulse-glow">
-          Quiero ser parte — es gratis
+        <Button variant="neon" size="lg" className="max-w-full whitespace-normal text-lg px-6 sm:px-10 py-6 animate-pulse-glow" asChild>
+          <Link to="/auth">Quiero ser parte — es gratis</Link>
         </Button>
       </div>
     </section>

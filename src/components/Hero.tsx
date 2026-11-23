@@ -1,24 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
 import heroBg from "@/assets/hero-bg.jpg";
-import SoundCloudEmbed from "@/components/SoundCloudEmbed";
+import { MatrixBackground } from "@/components/audio-reactive/MatrixBackground";
+import { useRadio } from "@/components/Radio";
 
 const Hero = () => {
-  const { data: featuredSet } = useQuery({
-    queryKey: ["featured_set"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("sets")
-        .select("*")
-        .eq("destacado", true)
-        .limit(1)
-        .maybeSingle();
-      if (error) throw error;
-      return data;
-    },
-  });
+  const { openRadio } = useRadio();
 
   return (
     <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -31,11 +18,13 @@ const Hero = () => {
           width={1920}
           height={1080}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/75 via-background/60 to-background" />
       </div>
 
+      <MatrixBackground bassFrequency={0} contained />
+
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center pt-20">
+      <div className="relative z-10 container mx-auto px-4 text-center pt-28 pb-24">
         <p className="text-primary font-semibold tracking-[0.3em] uppercase text-sm mb-4 animate-fade-in-up">
           Neo Trance Cafetero
         </p>
@@ -44,29 +33,30 @@ const Hero = () => {
           <span className="text-gradient-neon">DJ</span>
         </h1>
         <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-in-up-delay-1">
-          Yo no pincho canciones — cuento historias a través del sonido
+          Cuento historias a través del sonido
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up-delay-2">
-          <Button variant="hero" size="lg" className="text-lg px-8 py-6" asChild>
-            <Link to="/auth">Únete a la comunidad — es gratis</Link>
-          </Button>
-          <Button variant="heroOutline" size="lg" className="text-lg px-8 py-6" asChild>
+          <Button variant="heroOutline" size="lg" className="text-lg px-8 py-6 animate-heartbeat" asChild>
             <Link to="/musica">Escucha mis sets</Link>
+          </Button>
+          <Button variant="hero" size="lg" className="text-lg px-8 py-6 animate-heartbeat" asChild>
+            <Link to="/auth">Únete a la comunidad — es gratis</Link>
           </Button>
         </div>
 
         <p className="text-xs text-muted-foreground mt-6 animate-fade-in-up-delay-3">
-          Regístrate y recibe contenido exclusivo cada semana sobre Neo Trance Cafetero
+          Un espacio para conectar a través de la música y las historias
         </p>
 
-        {/* Featured set autoplay */}
-        {featuredSet && (
-          <div className="max-w-xl mx-auto mt-12 animate-fade-in-up-delay-3">
-            <p className="text-xs text-primary font-semibold uppercase tracking-wider mb-3">Escuchando ahora</p>
-            <SoundCloudEmbed url={featuredSet.url_soundcloud} autoPlay={true} />
-          </div>
-        )}
+        <nav aria-label="Explorar la experiencia" className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3 font-mono text-xs uppercase tracking-wider text-primary">
+          <button type="button" onClick={openRadio} className="hover:text-foreground">[ Música ]</button>
+          <a href="#reflexiones" className="hover:text-foreground">[ Reflexiones ]</a>
+          <a href="#miradas" className="hover:text-foreground">[ Fotografía ]</a>
+          <Link to="/blog" className="hover:text-foreground">[ Blog ]</Link>
+          <a href="#contacto" className="hover:text-foreground">[ Contacto ]</a>
+        </nav>
+
       </div>
 
       {/* Bottom gradient fade */}

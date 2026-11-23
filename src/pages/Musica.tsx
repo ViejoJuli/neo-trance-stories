@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import SoundCloudEmbed from "@/components/SoundCloudEmbed";
+import { useRadio } from "@/components/Radio";
 import { Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/lib/auth";
@@ -11,6 +11,7 @@ import { useToast } from "@/hooks/use-toast";
 const Musica = () => {
   const { user } = useAuth();
   const { toast } = useToast();
+  const { playSet } = useRadio();
 
   const { data: sets, isLoading } = useQuery({
     queryKey: ["sets"],
@@ -76,7 +77,9 @@ const Musica = () => {
                       <Heart className={`w-5 h-5 ${favoritos?.includes(set.id) ? "fill-accent text-accent" : "text-muted-foreground"}`} />
                     </Button>
                   </div>
-                  <SoundCloudEmbed url={set.url_soundcloud} autoPlay={false} />
+                  <Button variant="heroOutline" onClick={() => playSet(set.url_soundcloud)}>
+                    Escuchar este set
+                  </Button>
                 </div>
               ))}
             </div>

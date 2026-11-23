@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
+import BrandMark from "@/components/BrandMark";
 
 const Footer = () => {
   return (
-    <footer className="py-12 bg-card border-t border-border">
+    <footer id="contacto" className="scroll-mt-16 py-12 bg-card border-t border-border">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <Link to="/" className="text-2xl font-black text-gradient-neon">-1</Link>
+            <Link to="/" aria-label="-1, ir al inicio" className="inline-flex items-center"><BrandMark /></Link>
             <p className="text-muted-foreground text-sm mt-2">
               DJ & Productor Musical · Neo Trance Cafetero
             </p>
@@ -28,6 +29,13 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-foreground mb-3 text-sm">Conecta</h4>
             <p className="text-sm text-muted-foreground mb-3">contacto@minus1.co</p>
+            <a
+              href="/press-kit-minus-1-2026.pdf"
+              download
+              className="inline-block text-sm text-primary hover:underline mb-3"
+            >
+              Descargar presskit (PDF)
+            </a>
             <div className="flex gap-4">
               <a href="https://www.tiktok.com/@elminusuan" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">TikTok</a>
               <a href="https://www.instagram.com/elminusuan" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">Instagram</a>

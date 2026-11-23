@@ -1,7 +1,14 @@
+import { Sparkles } from "lucide-react";
+import elLoco from "@/assets/el-loco.webp";
+
 const About = () => {
   return (
-    <section id="sobre-mi" className="py-24 bg-secondary/30">
-      <div className="container mx-auto px-4">
+    <section id="sobre-mi" className="relative overflow-hidden scroll-mt-16 py-24 bg-[#081416]">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_25%_45%,rgba(0,255,170,0.12),transparent_45%),radial-gradient(ellipse_at_85%_20%,rgba(190,40,170,0.12),transparent_40%)]"
+      />
+      <div className="container relative mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-primary font-semibold tracking-widest uppercase text-sm mb-2">Sobre mí</p>
@@ -11,15 +18,21 @@ const About = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Visual element */}
-            <div className="relative">
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 via-mystic/20 to-secondary overflow-hidden border border-border">
-                <div className="w-full h-full flex items-center justify-center">
-                  <span className="text-9xl font-black text-gradient-neon opacity-80">-1</span>
-                </div>
+            <div className="relative mx-auto w-full max-w-[23rem] px-4 py-6">
+              <div aria-hidden="true" className="absolute inset-x-0 top-1/2 aspect-square -translate-y-1/2 rounded-full border border-primary/30 shadow-[0_0_60px_rgba(0,255,170,0.15)]" />
+              <div aria-hidden="true" className="absolute inset-x-5 top-1/2 aspect-square -translate-y-1/2 rounded-full border border-dashed border-primary/20" />
+              <div className="relative overflow-hidden rounded-xl border border-primary/60 bg-background p-1 shadow-[0_0_30px_rgba(0,255,170,0.22)]">
+                <img
+                  src={elLoco}
+                  alt="Ilustración de -1 como la carta de tarot El Loco, acompañado de un perro"
+                  width={768}
+                  height={1152}
+                  loading="lazy"
+                  className="block h-auto w-full rounded-lg"
+                />
               </div>
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-xl bg-accent/20 border border-accent/30 flex items-center justify-center animate-float">
-                <span className="text-3xl">🇨🇴</span>
+              <div aria-hidden="true" className="absolute -right-1 bottom-8 flex h-12 w-12 items-center justify-center rounded-full border border-primary/60 bg-[#081416] text-primary shadow-[0_0_20px_rgba(223,255,0,0.3)] animate-float">
+                <Sparkles size={20} />
               </div>
             </div>
 

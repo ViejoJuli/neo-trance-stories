@@ -119,6 +119,28 @@
   }
 }
 
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  12% {
+    transform: scale(1.025);
+  }
+  24% {
+    transform: scale(1);
+  }
+  36% {
+    transform: scale(1.015);
+  }
+  48% {
+    transform: scale(1);
+  }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 2.8s ease-in-out infinite;
+}
+
 .animate-fade-in-up {
   animation: fade-in-up 0.8s ease-out forwards;
 }
@@ -144,4 +166,21 @@
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-fade-in-up,
+  .animate-fade-in-up-delay-1,
+  .animate-fade-in-up-delay-2,
+  .animate-fade-in-up-delay-3,
+  .animate-heartbeat,
+  .animate-pulse-glow,
+  .animate-float {
+    animation: none;
+    opacity: 1;
+  }
 }

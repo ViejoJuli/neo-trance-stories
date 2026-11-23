@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -15,8 +15,8 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Dashboard from "./pages/Dashboard";
 import Perfil from "./pages/Perfil";
-import InteractivePortfolio from "./pages/InteractivePortfolio";
 import NotFound from "./pages/NotFound";
+import { RadioProvider } from "@/components/Radio";
 
 const queryClient = new QueryClient();
 
@@ -27,9 +27,10 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <AuthProvider>
+          <RadioProvider>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/portfolio" element={<InteractivePortfolio />} />
+            <Route path="/portfolio" element={<Navigate to="/" replace />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/tienda" element={<Tienda />} />
@@ -41,6 +42,7 @@ const App = () => (
             <Route path="/perfil" element={<ProtectedRoute><Perfil /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </RadioProvider>
         </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
